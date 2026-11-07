@@ -1,0 +1,3 @@
+Para 4 personas: Sala B (B, capacidad: 4)
+Preferida C: Sala C (C, capacidad: 6)
+Preferida B para 7: null
