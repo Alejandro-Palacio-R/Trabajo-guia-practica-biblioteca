@@ -1,0 +1,12 @@
+﻿ID;Escenario;Esperado;Clases;Patron;Estacion;Resultado
+P01;Construcción completa;Reserva válida, Pendiente;ReservaBuilder, Reserva;Builder;3;OK
+P02;Sin estudiante;Rechazo con mensaje;ReservaBuilder;Builder;3;OK
+P03;Capacidad para 4;Sala B;SeleccionPorCapacidad;Strategy;4;OK
+P04;Preferida C para 4;Sala C;SeleccionSalaPreferida;Strategy;4;OK
+P05;Preferida B para 7;Optional vacío;SeleccionSalaPreferida;Strategy;4;OK
+P06;Reserva exitosa;Registrada y Confirmada;ReservaFacade, RepositorioReservasMemoria;Facade;5;OK
+P07;Cambio a Confirmada;Ambos observadores avisados;Reserva, Pendiente, NotificadorEstudiante, RegistroEventos;Observer + State;6;OK
+P08;Cancelar Confirmada;Cancelada y evento;Confirmada, Cancelada, Reserva;State + Observer;6;OK
+P09;Confirmar Cancelada;Rechazo, sin evento;Cancelada, Reserva;State;6;OK
+P10;Solicitud para 10;No crea ni registra;SeleccionPorCapacidad, ReservaFacade;Strategy + Facade;5;OK
+P11;Finalizar Confirmada;Finalizada y evento;Confirmada, Finalizada, Reserva;State + Observer;7;OK
