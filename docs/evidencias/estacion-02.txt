@@ -1,0 +1,5 @@
+Salas de la biblioteca:
+Sala A (A, capacidad: 2)
+Sala B (B, capacidad: 4)
+Sala C (C, capacidad: 6)
+Sala D (D, capacidad: 8)
