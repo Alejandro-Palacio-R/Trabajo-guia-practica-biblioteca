@@ -7,11 +7,15 @@ import java.util.Optional;
 public class ReservaFacade {
     private final RepositorioSalas repositorioSalas;
     private final RepositorioReservas repositorioReservas;
-public ReservaFacade(RepositorioSalas repositorioSalas,
-                         RepositorioReservas repositorioReservas) {
+    private final java.util.List<ObservadorReserva> observadores;
+
+    public ReservaFacade(RepositorioSalas repositorioSalas,
+                         RepositorioReservas repositorioReservas,
+                        java.util.List<ObservadorReserva> observadores) {
         this.repositorioSalas = repositorioSalas;
         this.repositorioReservas = repositorioReservas;
-}
+        this.observadores = java.util.List.copyOf(observadores);
+    }
 
     public Optional<Reserva> realizarReserva(
         Estudiante estudiante, LocalDate fecha, LocalTime hora,
@@ -34,7 +38,8 @@ public ReservaFacade(RepositorioSalas repositorioSalas,
             .sala(sala.get())
             .build();
 
-repositorioReservas.guardar(reserva);
+        observadores.forEach(reserva::agregarObservador);
+        repositorioReservas.guardar(reserva);
         reserva.confirmar();
         return Optional.of(reserva);
     }

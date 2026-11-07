@@ -1,0 +1,6 @@
+Notificacion a Laura: su reservaR-94F2C510 cambio de Pendiente a Confirmada.
+Evento registrado: R-94F2C510 cambio de Pendiente a Confirmada.
+Reserva R-94F2C510 | Laura | 2026-11-13 14:00 | Sala B (B, capacidad: 4) | Estado:Confirmada
+Notificacion a Laura: su reservaR-94F2C510 cambio de Confirmada a Cancelada.
+Evento registrado: R-94F2C510 cambio de Confirmada a Cancelada.
+Reserva R-94F2C510 | Laura | 2026-11-13 14:00 | Sala B (B, capacidad: 4) | Estado:Cancelada
