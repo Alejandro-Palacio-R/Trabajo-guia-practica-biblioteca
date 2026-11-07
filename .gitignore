@@ -1,0 +1,18 @@
+# Compilación Java
+*.class
+/out/
+/build/
+/target/
+
+# Configuración local de IDE
+/.idea/
+*.iml
+/.vscode/
+
+# Archivos temporales
+~$*
+*.tmp
+*.log
+Thumbs.db
+.DS_Store
+__pycache__/
