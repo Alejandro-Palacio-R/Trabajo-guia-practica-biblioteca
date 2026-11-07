@@ -1,0 +1,27 @@
+=== ESCENARIO PRINCIPAL ===
+Notificacion a Laura: su reservaR-48D4B195 cambio de Pendiente a Confirmada.
+Evento registrado: R-48D4B195 cambio de Pendiente a Confirmada.
+Reserva R-48D4B195 | Laura | 2026-11-13 14:00 | Sala B (B, capacidad: 4) | Estado:Confirmada
+
+Laura cancela la reserva: 
+Notificacion a Laura: su reservaR-48D4B195 cambio de Confirmada a Cancelada.
+Evento registrado: R-48D4B195 cambio de Confirmada a Cancelada.
+Reserva R-48D4B195 | Laura | 2026-11-13 14:00 | Sala B (B, capacidad: 4) | Estado:Cancelada
+
+Intento invalido: confirmar una reserva cancelada
+Operacion rechazada: No se puede confirmar una reserva cancelada.
+
+=== PRUEBA DE LA SALA PREFERIDA ===
+Notificacion a Andres: su reservaR-39E6F198 cambio de Pendiente a Confirmada.
+Evento registrado: R-39E6F198 cambio de Pendiente a Confirmada.
+Reserva R-39E6F198 | Andres | 2026-11-14 10:00 | Sala C (C, capacidad: 6) | Estado:Confirmada
+
+=== PRUEBA SIN SALA ADECUADA ===
+No hay una sala disponible que cumpla la solicitud.
+
+=== PRUEBA DE FINALIZACION ===
+Notificacion a Samuel: su reservaR-CF032639 cambio de Pendiente a Confirmada.
+Evento registrado: R-CF032639 cambio de Pendiente a Confirmada.
+Notificacion a Samuel: su reservaR-CF032639 cambio de Confirmada a Finalizada.
+Evento registrado: R-CF032639 cambio de Confirmada a Finalizada.
+Reserva R-CF032639 | Samuel | 2026-11-16 11:00 | Sala A (A, capacidad: 2) | Estado:Finalizada

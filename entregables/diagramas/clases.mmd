@@ -1,0 +1,49 @@
+classDiagram
+ Main ..> ReservaFacade
+ Main ..> RepositorioSalasMemoria
+ Main ..> RepositorioReservasMemoria
+ ReservaFacade --> RepositorioSalas
+ ReservaFacade --> RepositorioReservas
+ ReservaFacade --> EstrategiaSeleccionSala
+ ReservaFacade ..> ReservaBuilder
+ ReservaFacade --> ObservadorReserva
+ ReservaBuilder ..> Reserva : crea
+ Reserva --> Estudiante
+ Reserva --> Sala
+ Reserva --> EstadoReserva
+ Reserva "1" o-- "0..*" ObservadorReserva : suscriptores
+ RepositorioReservasMemoria o-- Reserva
+ RepositorioSalasMemoria o-- Sala
+ RepositorioSalas <|.. RepositorioSalasMemoria
+ RepositorioReservas <|.. RepositorioReservasMemoria
+ EstrategiaSeleccionSala <|.. SeleccionPorCapacidad
+ EstrategiaSeleccionSala <|.. SeleccionSalaPreferida
+ ObservadorReserva <|.. NotificadorEstudiante
+ ObservadorReserva <|.. RegistroEventos
+ EstadoReserva <|.. Pendiente
+ EstadoReserva <|.. Confirmada
+ EstadoReserva <|.. Cancelada
+ EstadoReserva <|.. Finalizada
+ class EstrategiaSeleccionSala {
+  <<interface>>
+  seleccionar(disponibles, cantidadPersonas)
+ }
+ class EstadoReserva {
+  <<interface>>
+  nombre()
+  confirmar(reserva)
+  cancelar(reserva)
+  finalizar(reserva)
+ }
+ class ObservadorReserva {
+  <<interface>>
+  actualizar(reserva, anterior, nuevo)
+ }
+ class RepositorioSalas {
+  <<interface>>
+  obtenerDisponibles()
+ }
+ class RepositorioReservas {
+  <<interface>>
+  guardar(reserva)
+ }

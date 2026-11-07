@@ -2,7 +2,7 @@
 
 Prototipo académico de consola en **Java 17 o superior** para reservar salas de biblioteca. Construido por estaciones con **Builder, Strategy, Facade, Observer y State**.
 
-**Estado de esta versión:** Avance hasta la estación 7: Controlar el ciclo de vida con State.
+**Estado de esta versión:** Integración final de las ocho estaciones.
 
 ## Ramas del taller
 
@@ -18,8 +18,6 @@ Cada rama conserva el avance acumulado hasta su estación. Las ramas se integran
 | 06 | [Notificar eventos con Observer](https://github.com/Alejandro-Palacio-R/Trabajo-guia-practica-biblioteca/tree/estacion-06) | `estacion-06` |
 | 07 | [Controlar el ciclo de vida con State](https://github.com/Alejandro-Palacio-R/Trabajo-guia-practica-biblioteca/tree/estacion-07) | `estacion-07` |
 | 08 | [Integrar y validar la aplicación completa](https://github.com/Alejandro-Palacio-R/Trabajo-guia-practica-biblioteca/tree/estacion-08) | `estacion-08` |
-
-> Las ramas correspondientes a estaciones posteriores solo estarán disponibles una vez publicado el conjunto completo.
 
 ## Ejecutar
 
@@ -51,3 +49,39 @@ git log --graph --oneline --decorate --all
 ```
 
 Las clases State se incluyen como dependencias desde la estación 3 para mantener esa versión compilable, conforme a la construcción acumulativa de la guía. Su prueba específica se desarrolla en la estación 7.
+
+## Pruebas y entregables
+
+Las pruebas P01-P11 y las comprobaciones adicionales pasaron: **37 comprobaciones correctas**. También se compiló y ejecutó cada versión de estación con código Java.
+
+Para ejecutar la batería sin reemplazar Main:
+
+```powershell
+./entregables/ejecutar_pruebas.ps1
+```
+
+- [Guía por estaciones, con código Main y explicaciones](entregables/guia_por_estaciones.md)
+- [Informe PDF](entregables/informe_biblioteca.pdf)
+- [Matriz de trazabilidad CSV](entregables/matriz_trazabilidad.csv)
+- [Resultados reales de P01-P11](entregables/evidencias/resultados.txt)
+- [Pruebas auxiliares](entregables/pruebas/MainPruebas.java)
+- [Diagrama de flujo](entregables/diagramas/flujo.png)
+- [Diagrama de clases](entregables/diagramas/clases.png)
+
+Los Main alternativos se encuentran en `entregables/pruebas/estacion2` a `estacion8`. Utiliza uno a la vez; compilar recursivamente todos esos archivos produciría clases Main duplicadas. El script ya selecciona los archivos correctos.
+
+Las imágenes de evidencia fueron generadas desde la salida de ejecución; están rotuladas como representaciones de texto y no como capturas del IDE. La conclusión del informe es una base que el estudiante debe personalizar.
+
+## Patrones y responsabilidades
+
+| Patrón | Componentes | Responsabilidad |
+|---|---|---|
+| Builder | `ReservaBuilder` | Construcción y validación de reservas |
+| Strategy | `EstrategiaSeleccionSala` y sus implementaciones | Seleccionar una sala adecuada |
+| Facade | `ReservaFacade` | Coordinar el caso de uso |
+| Observer | `ObservadorReserva`, `NotificadorEstudiante`, `RegistroEventos` | Reaccionar a cambios de estado |
+| State | `EstadoReserva`, `Pendiente`, `Confirmada`, `Cancelada`, `Finalizada` | Autorizar o rechazar transiciones |
+
+## Fuente y material auxiliar
+
+Trabajo basado en la guía práctica suministrada en clase. Las clases del dominio se conservaron de la carpeta original. La organización del repositorio, la documentación y las pruebas auxiliares se prepararon con asistencia de Codex.

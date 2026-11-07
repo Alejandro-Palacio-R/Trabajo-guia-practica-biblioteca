@@ -1,0 +1,18 @@
+flowchart TD
+ A([Inicio]) --> B[Estudiante registra datos]
+ B --> C[Facade consulta RepositorioSalas]
+ C --> D[Strategy selecciona sala]
+ D --> E{¿Hay sala adecuada?}
+ E -- No --> F[Informar sin disponibilidad]
+ F --> Z([Fin sin reserva])
+ E -- Sí --> G[Builder valida y construye Pendiente]
+ G --> H[Facade suscribe observadores y registra]
+ H --> I[State confirma]
+ I --> J[Observer notifica a suscriptores]
+ J --> K{Operación posterior}
+ K -- Cancelar / finalizar --> L[State valida operación]
+ L --> M{¿Permitida?}
+ M -- Sí --> N[Cambiar estado y notificar]
+ M -- No --> O[Rechazar sin notificar]
+ N --> P([Fin])
+ O --> P

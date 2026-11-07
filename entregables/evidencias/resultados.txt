@@ -1,0 +1,93 @@
+
+=== ESTACION 2: DOMINIO ===
+Sala A (A, capacidad: 2)
+Sala B (B, capacidad: 4)
+Sala C (C, capacidad: 6)
+Sala D (D, capacidad: 8)
+OK: Cuatro salas
+OK: Capacidad de sala A
+OK: Capacidad de sala B
+OK: Capacidad de sala C
+OK: Capacidad de sala D
+OK: Estudiante conserva su nombre
+OK: Identificador vacio | identificador y nombre son obligatorios.
+OK: Capacidad cero | Datos de sala invalidos.
+
+=== ESTACION 3: BUILDER ===
+Reserva R-E06FE7D4 | Laura | 2026-11-13 14:00 | Sala B (B, capacidad: 4) | Estado:Pendiente
+OK: P01: construccion valida, estado inicial Pendiente
+OK: P02: sin estudiante | Faltan datos obligatorios para la reserva.
+OK: Capacidad insuficiente | La sala no tiene la capacidad suficiente.
+OK: Fecha pasada | Fecha, duracion o cantidad de personas invalida.
+OK: Duracion cero | Fecha, duracion o cantidad de personas invalida.
+OK: Personas cero | Fecha, duracion o cantidad de personas invalida.
+
+=== ESTACION 4: STRATEGY ===
+OK: P03: capacidad para 4 -> B
+OK: P04: preferida C para 4 -> C
+OK: P05: preferida B para 7 -> vacio
+OK: Elige la menor capacidad suficiente
+
+=== ESTACION 5: FACADE ===
+OK: P06: reserva registrada y confirmada
+No hay una sala disponible que cumpla la solicitud.
+OK: P10: para 10 personas no crea ni registra otra reserva
+
+=== ESTACION 6: OBSERVER ===
+Notificacion a Laura: su reservaR-5980AAC4 cambio de Pendiente a Confirmada.
+Evento registrado: R-5980AAC4 cambio de Pendiente a Confirmada.
+Observador 1: Pendiente -> Confirmada
+Observador 2: Pendiente -> Confirmada
+OK: P07: ambos suscriptores reciben la confirmacion
+Notificacion a Laura: su reservaR-5980AAC4 cambio de Confirmada a Cancelada.
+Evento registrado: R-5980AAC4 cambio de Confirmada a Cancelada.
+Observador 1: Confirmada -> Cancelada
+Observador 2: Confirmada -> Cancelada
+OK: P08: cancelar confirmada cambia estado y notifica
+OK: P09: confirmar cancelada se rechaza | No se puede confirmar una reserva cancelada.
+OK: P09: rechazo no genera notificaciones
+OK: Observador retirado no recibe avisos
+
+=== ESTACION 7: STATE ===
+OK: No se finaliza una Pendiente | No se puede finalizar una reserva pendiente.
+OK: Rechazo conserva estado
+OK: No se confirma dos veces | La reserva ya esta confirmada.
+OK: P11: finalizar confirmada cambia estado y notifica
+OK: No se cancela una Finalizada | No se puede cancelar una reserva finalizada
+OK: No se confirma una Finalizada | No se puede confirmar una reserva finalizada
+OK: No se finaliza dos veces | Esta reserva ya esta finalizada
+OK: Estado terminal conserva estado y no notifica rechazos
+OK: Pendiente -> Cancelada
+OK: No se cancela dos veces | La reserva ya esta cancelada.
+OK: No se finaliza una Cancelada | No se puede finalizar una reserva cancelada
+
+=== ESTACION 8: MAIN ORIGINAL ===
+=== ESCENARIO PRINCIPAL ===
+Notificacion a Laura: su reservaR-B4675703 cambio de Pendiente a Confirmada.
+Evento registrado: R-B4675703 cambio de Pendiente a Confirmada.
+Reserva R-B4675703 | Laura | 2026-11-13 14:00 | Sala B (B, capacidad: 4) | Estado:Confirmada
+
+Laura cancela la reserva: 
+Notificacion a Laura: su reservaR-B4675703 cambio de Confirmada a Cancelada.
+Evento registrado: R-B4675703 cambio de Confirmada a Cancelada.
+Reserva R-B4675703 | Laura | 2026-11-13 14:00 | Sala B (B, capacidad: 4) | Estado:Cancelada
+
+Intento invalido: confirmar una reserva cancelada
+Operacion rechazada: No se puede confirmar una reserva cancelada.
+
+=== PRUEBA DE LA SALA PREFERIDA ===
+Notificacion a Andres: su reservaR-2EBC7416 cambio de Pendiente a Confirmada.
+Evento registrado: R-2EBC7416 cambio de Pendiente a Confirmada.
+Reserva R-2EBC7416 | Andres | 2026-11-14 10:00 | Sala C (C, capacidad: 6) | Estado:Confirmada
+
+=== PRUEBA SIN SALA ADECUADA ===
+No hay una sala disponible que cumpla la solicitud.
+
+=== PRUEBA DE FINALIZACION ===
+Notificacion a Samuel: su reservaR-DE02874C cambio de Pendiente a Confirmada.
+Evento registrado: R-DE02874C cambio de Pendiente a Confirmada.
+Notificacion a Samuel: su reservaR-DE02874C cambio de Confirmada a Finalizada.
+Evento registrado: R-DE02874C cambio de Confirmada a Finalizada.
+Reserva R-DE02874C | Samuel | 2026-11-16 11:00 | Sala A (A, capacidad: 2) | Estado:Finalizada
+OK: Main original termina sin excepciones no controladas
+TOTAL: 37 comprobaciones correctas.
