@@ -83,6 +83,8 @@ java -cp out biblioteca.MainEstacion7
 java -cp out biblioteca.MainEstacion8
 ```
 
+Las demostraciones de consola son sencillas: indican la operación, el resultado esperado y el resultado obtenido. `MainEstacion2` reproduce el ejemplo de las cuatro salas de la guía (con el nombre de clase adaptado para evitar duplicados). Los demás usan instrucciones directas y `try/catch`, sin contadores ni métodos auxiliares de prueba. `MainEstacion8` ejecuta el Main final.
+
 En el IDE, abre el `MainEstacionN.java` que quieras y ejecuta su método `main`. `Main.java` conserva la aplicación final. La estación 1 es conceptual y no requiere un ejecutable.
 
 Las versiones de `entregables/pruebas/estacion2` a `estacion8` se conservan como plantillas originales del informe. No las copies a `src`: las versiones renombradas ya están listas. Compila únicamente `src/biblioteca/*.java`; el script de la batería también selecciona sus archivos explícitamente.

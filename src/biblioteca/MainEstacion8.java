@@ -1,76 +1,9 @@
 package biblioteca;
-import java.util.List;
-import java.time.LocalTime;
-import java.time.LocalDate;
 
 public class MainEstacion8 {
     public static void main(String[] args) {
-        RepositorioSalas salas = new RepositorioSalasMemoria();
-        RepositorioReservasMemoria reservas = new RepositorioReservasMemoria();
-
-        List<ObservadorReserva> observadores = List.of(
-            new NotificadorEstudiante(),
-            new RegistroEventos()
-        );
-    ReservaFacade fachada = new ReservaFacade(salas, reservas, observadores);
-
-    Estudiante laura = new Estudiante("E001", "Laura");
-
-    System.out.println("=== ESCENARIO PRINCIPAL ===");
-    Reserva reserva = fachada.realizarReserva(
-        laura,
-        LocalDate.now().plusDays(7),
-        LocalTime.of(14,0),
-        2,
-        4,
-        new SeleccionPorCapacidad()
-    ).orElseThrow();
-
-    System.out.println(reserva);
-    System.out.println("\nLaura cancela la reserva: ");
-    reserva.cancelar();
-    System.out.println(reserva);
-
-    System.out.println("\nIntento invalido: confirmar una reserva cancelada");
-    try{
-        reserva.confirmar();
-    } catch (IllegalStateException ex) {
-        System.out.println("Operacion rechazada: " + ex.getMessage());
-        }
-    System.out.println("\n=== PRUEBA DE LA SALA PREFERIDA ===");
-    fachada.realizarReserva(
-        new Estudiante("E002", "Andres"),
-        LocalDate.now().plusDays(8),
-        LocalTime.of(10,0),
-        2,
-        4,
-        new SeleccionSalaPreferida("C")
-        ).ifPresent(System.out::println);
-
-    System.out.println("\n=== PRUEBA SIN SALA ADECUADA ===");
-    fachada.realizarReserva(
-        new Estudiante("E004", "Camila"),
-        LocalDate.now().plusDays(9),
-        LocalTime.of(9, 0),
-        2,
-         10,
-        new SeleccionPorCapacidad()
-    );
-
-    System.out.println("\n=== PRUEBA DE FINALIZACION ===");
-    Reserva otra = fachada.realizarReserva(
-        new Estudiante("E005", "Samuel"),
-        LocalDate.now().plusDays(10) ,
-        LocalTime.of(11, 0),
-         1,
-          2,
-        new SeleccionPorCapacidad()
-    ).orElseThrow();
-    otra.finalizar();
-    System.out.println(otra);
+        System.out.println("=== ESTACION 8: APLICACION COMPLETA ===");
+        System.out.println("Se ejecutaran los escenarios finales del taller.\n");
+        Main.main(args);
     }
-
-
 }
-
-

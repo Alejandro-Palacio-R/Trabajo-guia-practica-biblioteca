@@ -2,61 +2,55 @@ package biblioteca;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.List;
 
 public class MainEstacion7 {
-    private static int comprobaciones;
-
     public static void main(String[] args) {
-        estacion7();
-    }
-
-    private static void comprobar(boolean condicion, String descripcion) {
-        if (!condicion) throw new AssertionError(descripcion);
-        comprobaciones++;
-        System.out.println("OK: " + descripcion);
-    }
-
-    private static void rechaza(Runnable accion, String descripcion) {
-        try {
-            accion.run();
-        } catch (IllegalStateException | IllegalArgumentException ex) {
-            comprobar(true, descripcion + " | " + ex.getMessage());
-            return;
-        }
-        throw new AssertionError("No rechazo: " + descripcion);
-    }
-
-    private static ReservaBuilder datos() {
-        return new ReservaBuilder()
+        System.out.println("=== ESTACION 7: CAMBIOS DE ESTADO ===");
+        Reserva primera = new ReservaBuilder()
             .estudiante(new Estudiante("E001", "Laura"))
             .fecha(LocalDate.now().plusDays(7))
             .horaInicio(LocalTime.of(14, 0))
-            .duracionHoras(2).cantidadPersonas(4)
-            .sala(new Sala("B", "Sala B", 4));
-    }
+            .duracionHoras(2)
+            .cantidadPersonas(4)
+            .sala(new Sala("B", "Sala B", 4))
+            .build();
 
-    public static void estacion7() {
-        System.out.println("\n=== ESTACION 7: STATE ===");
-        Reserva r = datos().build();
-        rechaza(r::finalizar, "No se finaliza una Pendiente");
-        comprobar(r.getNombreEstado().equals("Pendiente"), "Rechazo conserva estado");
-        r.confirmar();
-        rechaza(r::confirmar, "No se confirma dos veces");
-        int[] eventos = {0};
-        r.agregarObservador((reserva, anterior, nuevo) -> eventos[0]++);
-        r.finalizar();
-        comprobar(r.getNombreEstado().equals("Finalizada") && eventos[0] == 1,
-            "P11: finalizar confirmada cambia estado y notifica");
-        rechaza(r::cancelar, "No se cancela una Finalizada");
-        rechaza(r::confirmar, "No se confirma una Finalizada");
-        rechaza(r::finalizar, "No se finaliza dos veces");
-        comprobar(eventos[0] == 1 && r.getNombreEstado().equals("Finalizada"),
-            "Estado terminal conserva estado y no notifica rechazos");
-        Reserva pendiente = datos().build();
-        pendiente.cancelar();
-        comprobar(pendiente.getNombreEstado().equals("Cancelada"), "Pendiente -> Cancelada");
-        rechaza(pendiente::cancelar, "No se cancela dos veces");
-        rechaza(pendiente::finalizar, "No se finaliza una Cancelada");
+        System.out.println("\nPrimera reserva: Pendiente -> Confirmada -> Cancelada.");
+        System.out.println("Estado inicial: " + primera.getNombreEstado());
+        primera.confirmar();
+        System.out.println("Despues de confirmar: " + primera.getNombreEstado());
+        primera.cancelar();
+        System.out.println("Despues de cancelar: " + primera.getNombreEstado());
+
+        System.out.println("\nConfirmar una cancelada: debe rechazarse.");
+        try {
+            primera.confirmar();
+            System.out.println("ERROR: se confirmo una reserva cancelada.");
+        } catch (IllegalStateException ex) {
+            System.out.println("Rechazada: " + ex.getMessage());
+        }
+
+        Reserva segunda = new ReservaBuilder()
+            .estudiante(new Estudiante("E002", "Andres"))
+            .fecha(LocalDate.now().plusDays(8))
+            .horaInicio(LocalTime.of(10, 0))
+            .duracionHoras(1)
+            .cantidadPersonas(2)
+            .sala(new Sala("A", "Sala A", 2))
+            .build();
+
+        System.out.println("\nSegunda reserva: Pendiente -> Confirmada -> Finalizada.");
+        segunda.confirmar();
+        System.out.println("Despues de confirmar: " + segunda.getNombreEstado());
+        segunda.finalizar();
+        System.out.println("Despues de finalizar: " + segunda.getNombreEstado());
+
+        System.out.println("\nCancelar una finalizada: debe rechazarse.");
+        try {
+            segunda.cancelar();
+            System.out.println("ERROR: se cancelo una reserva finalizada.");
+        } catch (IllegalStateException ex) {
+            System.out.println("Rechazada: " + ex.getMessage());
+        }
     }
 }
