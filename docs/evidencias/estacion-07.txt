@@ -1,0 +1,13 @@
+
+=== ESTACION 7: STATE ===
+OK: No se finaliza una Pendiente | No se puede finalizar una reserva pendiente.
+OK: Rechazo conserva estado
+OK: No se confirma dos veces | La reserva ya esta confirmada.
+OK: P11: finalizar confirmada cambia estado y notifica
+OK: No se cancela una Finalizada | No se puede cancelar una reserva finalizada
+OK: No se confirma una Finalizada | No se puede confirmar una reserva finalizada
+OK: No se finaliza dos veces | Esta reserva ya esta finalizada
+OK: Estado terminal conserva estado y no notifica rechazos
+OK: Pendiente -> Cancelada
+OK: No se cancela dos veces | La reserva ya esta cancelada.
+OK: No se finaliza una Cancelada | No se puede finalizar una reserva cancelada
