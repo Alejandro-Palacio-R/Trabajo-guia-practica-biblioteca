@@ -68,7 +68,24 @@ Para ejecutar la batería sin reemplazar Main:
 - [Diagrama de flujo](entregables/diagramas/flujo.png)
 - [Diagrama de clases](entregables/diagramas/clases.png)
 
-Los Main alternativos se encuentran en `entregables/pruebas/estacion2` a `estacion8`. Utiliza uno a la vez; compilar recursivamente todos esos archivos produciría clases Main duplicadas. El script ya selecciona los archivos correctos.
+### Ejecutar una estación directamente
+
+Los archivos `MainEstacion2.java` a `MainEstacion8.java` están en `src/biblioteca`, junto al `Main.java` final. Todos pueden compilar juntos y cada uno se ejecuta por separado:
+
+```powershell
+javac -encoding UTF-8 -d out src/biblioteca/*.java
+java -cp out biblioteca.MainEstacion2
+java -cp out biblioteca.MainEstacion3
+java -cp out biblioteca.MainEstacion4
+java -cp out biblioteca.MainEstacion5
+java -cp out biblioteca.MainEstacion6
+java -cp out biblioteca.MainEstacion7
+java -cp out biblioteca.MainEstacion8
+```
+
+En el IDE, abre el `MainEstacionN.java` que quieras y ejecuta su método `main`. `Main.java` conserva la aplicación final. La estación 1 es conceptual y no requiere un ejecutable.
+
+Las versiones de `entregables/pruebas/estacion2` a `estacion8` se conservan como plantillas originales del informe. No las copies a `src`: las versiones renombradas ya están listas. Compila únicamente `src/biblioteca/*.java`; el script de la batería también selecciona sus archivos explícitamente.
 
 Las imágenes de evidencia fueron generadas desde la salida de ejecución; están rotuladas como representaciones de texto y no como capturas del IDE. La conclusión del informe es una base que el estudiante debe personalizar.
 
