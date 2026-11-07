@@ -2,7 +2,7 @@
 
 Prototipo académico de consola en **Java 17 o superior** para reservar salas de biblioteca. Construido por estaciones con **Builder, Strategy, Facade, Observer y State**.
 
-**Estado de esta versión:** Avance hasta la estación 1: Comprender el problema y modelar el flujo.
+**Estado de esta versión:** Avance hasta la estación 2: Crear el dominio y ejecutar la primera versión.
 
 ## Ramas del taller
 
